@@ -170,6 +170,25 @@
                     opacity: 0;
                 }
             }
+            .terminal-avatar {
+                position: fixed;
+                bottom: 0;
+                right: 1.5rem;
+                width: clamp(130px, 16vw, 210px);
+                height: auto;
+                z-index: 10;
+                pointer-events: none;
+                filter: drop-shadow(0 0 14px rgba(51, 255, 51, 0.35));
+                opacity: 0.9;
+            }
+
+            @media (max-width: 600px) {
+               .terminal-avatar {
+                   width: 95px;
+                   right: 0.5rem;
+                   opacity: 0.65;
+               }
+            }
         </style>
     </head>
     <body>
@@ -695,27 +714,7 @@
             };
         </script>
 
-.terminal-avatar {
-    position: fixed;
-    bottom: 0;
-    right: 1.5rem;
-    width: clamp(130px, 16vw, 210px);
-    height: auto;
-    z-index: 10;
-    pointer-events: none;
-    filter: drop-shadow(0 0 14px rgba(51, 255, 51, 0.35));
-    opacity: 0.9;
-}
-
-@media (max-width: 600px) {
-    .terminal-avatar {
-        width: 95px;
-        right: 0.5rem;
-        opacity: 0.65;
-    }
-}
-
-<img src="jason_color.png" alt="Jason Ellison" class="terminal-avatar" />
+        <img src="jason_color.png" alt="Jason Ellison" class="terminal-avatar" />
 
     </body>
 </html>
