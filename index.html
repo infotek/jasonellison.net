@@ -1,4 +1,234 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>jasonellison.net</title><style>:root{--bg:#030a03;--text:#33ff33;--dim-text:#1d991d;--border:#004400;--accent:#66ff66}*,::after,::before{box-sizing:border-box}html{font-size:100%}body{font-size:clamp(16px,3dvw,20px);background-color:var(--bg);color:var(--text);font-family:"Courier New",Courier,monospace,system-ui;min-height:100dvh;margin:0;padding:2rem 1rem;display:flex;flex-direction:column;align-items:center;background-image:linear-gradient(rgba(0,0,0,0) 50%,rgba(0,0,0,.4) 50%);background-size:100% 4px}.container{position:fixed;left:0;top:0;right:0;bottom:0;z-index:-1;overflow:hidden;pointer-events:none}.container canvas{display:block;width:100%;height:100%}main{width:100%;max-width:800px;z-index:1}nav{display:flex;gap:1rem;border-bottom:1px solid var(--border);padding-bottom:.75rem;margin-bottom:2rem;flex-wrap:wrap;justify-content:center}nav button{background:0 0;border:1px solid transparent;color:var(--dim-text);font-family:inherit;font-size:1rem;cursor:pointer;padding:.4rem .8rem;border-radius:2px;transition:color .2s,border-color .2s}nav button.active,nav button:hover{color:var(--text);border-color:var(--text);background-color:rgba(51,255,51,.05);text-shadow:0 0 6px var(--dim-text)}.tab-content{display:none;text-align:left}.tab-content.active{display:block}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;text-shadow:0 0 8px var(--text)}ul{margin-top:.5rem;padding-left:1.5rem}li{margin-bottom:.5rem}h1,h2,h3{color:var(--accent);text-shadow:0 0 6px rgba(51,255,51,.4)}.prompt::before{content:"infotek@darkstar:~$ ";color:var(--dim-text);font-weight:400}.cursor::after{content:"█";display:inline-block;margin-left:4px;color:var(--text);animation:blink 1s step-start infinite}@keyframes blink{50%{opacity:0}}</style></head><body><div class="container" aria-hidden="true"><canvas id="waves-canvas"></canvas></div><main><nav><button class="tab-btn active" onclick='switchTab("home")'>~</button> <button class="tab-btn" onclick='switchTab("cv")'>whois</button> <button class="tab-btn" onclick='switchTab("publications")'>apropos</button> <button class="tab-btn" onclick='switchTab("sailing")'>scriptreplay</button> <button class="tab-btn" onclick='switchTab("children")'>ip addr</button> <button class="tab-btn" onclick='switchTab("social")'>ping</button></nav><section id="tab-home" class="tab-content active"><h1 class="prompt cursor">hostname</h1><p>jasonellison.net</p></section><section id="tab-cv" class="tab-content"><h2 class="prompt cursor">whois jasonellison</h2><p>Curriculum Vitae content goes here.</p></section><section id="tab-publications" class="tab-content"><h2 class="prompt cursor">apropos 1 publications</h2><h3>zines</h3><ul><li><a href="docs/BSD_Magazine_02_2009_OSSTL.pdf">Open Source Studio to Transmitter Link | BSD Magazine</a></li><li><a href="docs/Linux_Journal_2009_No_6_Nagios.pdf">SNMP Monitoring with Nagios | Linux Journal</a></li><li><a href="docs/Linux_Journal_January_2004_Controlling_Devices.pdf">Controlling Devices with Relays | Linux Journal</a></li></ul><h3>cve(s)</h3><ul><li><a href="https://www.kb.cert.org/vuls/id/515283">CVE-2012-2568</a> Score: 10.0 Critical</li></ul><h3>commits</h3><li><a href="https://github.com/librenms/librenms/commit/b4693e559e57bfc876f3fea4a9f6c760b847227a">librenms commit b4693e5</a></li></section><section id="tab-sailing" class="tab-content"><h2 class="prompt cursor">scriptreplay ./sailing_log</h2><p>Pictures and videos.</p></section><section id="tab-children" class="tab-content"><h2 class="prompt cursor">ip addr show dev family0</h2><ul><li>Haley</li><li>Emma</li><li>Oliver</li></ul></section><section id="tab-social" class="tab-content"><h2 class="prompt cursor">ping -c 4 linkedin.com</h2><ul><li><a href="https://www.linkedin.com/in/infotek/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="mailto:infotek@gmail.com" target="_blank" rel="noopener">infotek@gmail.com</a></li></ul></section></main><script type="module">"use strict";
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="dark" />
+
+        <title>jasonellison.net</title>
+        <style>
+            :root {
+                --bg: #030a03;             /* Deep CRT dark background */
+                --text: #33ff33;           /* Classic P31 green phosphor text */
+                --dim-text: #1d991d;       /* Muted green for inactive elements */
+                --border: #004400;         /* Subtle dark green borders */
+                --accent: #66ff66;         /* High-luminance green for highlights */
+            }
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            html {
+                font-size: 100%;
+            }
+
+            body {
+                font-size: clamp(16px, 3dvw, 20px);
+                background-color: var(--bg);
+                color: var(--text);
+                font-family: "Courier New", Courier, monospace, system-ui;
+                min-height: 100dvh;
+                margin: 0;
+                padding: 2rem 1rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                /* CRT Scanline Overlay Effect */
+                background-image: linear-gradient(
+                    rgba(0, 0, 0, 0) 50%, 
+                    rgba(0, 0, 0, 0.4) 50%
+                );
+                background-size: 100% 4px;
+            }
+
+            .container {
+                position: fixed;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                overflow: hidden;
+                pointer-events: none;
+            }
+
+            .container canvas {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Layout & Navigation */
+            main {
+                width: 100%;
+                max-width: 800px;
+                z-index: 1;
+            }
+
+            nav {
+                display: flex;
+                gap: 1rem;
+                border-bottom: 1px solid var(--border);
+                padding-bottom: 0.75rem;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav button {
+                background: none;
+                border: 1px solid transparent;
+                color: var(--dim-text);
+                font-family: inherit;
+                font-size: 1rem;
+                cursor: pointer;
+                padding: 0.4rem 0.8rem;
+                border-radius: 2px;
+                transition: color 0.2s, border-color 0.2s;
+            }
+
+            nav button:hover, nav button.active {
+                color: var(--text);
+                border-color: var(--text);
+                background-color: rgba(51, 255, 51, 0.05);
+                text-shadow: 0 0 6px var(--dim-text);
+            }
+
+            .tab-content {
+                display: none;
+                text-align: left;
+            }
+
+            .tab-content.active {
+                display: block;
+            }
+
+            a {
+                color: var(--accent);
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+                text-shadow: 0 0 8px var(--text);
+            }
+
+            ul {
+                margin-top: 0.5rem;
+                padding-left: 1.5rem;
+            }
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+
+            h1, h2, h3 {
+                color: var(--accent);
+                text-shadow: 0 0 6px rgba(51, 255, 51, 0.4);
+            }
+
+            /* Terminal Prompt & Blinking Cursor Styling */
+            .prompt::before {
+                content: "infotek@darkstar:~$ ";
+                color: var(--dim-text);
+                font-weight: normal;
+            }
+
+            .cursor::after {
+                content: "█";
+                display: inline-block;
+                margin-left: 4px;
+                color: var(--text);
+                animation: blink 1s step-start infinite;
+            }
+
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" aria-hidden="true">
+            <canvas id="waves-canvas"></canvas>
+        </div>
+
+        <main>
+            <nav>
+                <button class="tab-btn active" onclick="switchTab('home')">~</button>
+                <button class="tab-btn" onclick="switchTab('cv')">whois</button>
+                <button class="tab-btn" onclick="switchTab('publications')">apropos</button>
+                <button class="tab-btn" onclick="switchTab('sailing')">scriptreplay</button>
+                <button class="tab-btn" onclick="switchTab('children')">ip addr</button>
+                <button class="tab-btn" onclick="switchTab('social')">ping</button>
+            </nav>
+
+            <!-- Home Tab -->
+            <section id="tab-home" class="tab-content active">
+                <h1 class="prompt cursor">hostname</h1>
+                <p>jasonellison.net</p>
+            </section>
+
+            <!-- CV Tab -->
+            <section id="tab-cv" class="tab-content">
+                <h2 class="prompt cursor">whois jasonellison</h2>
+                <p>Curriculum Vitae content goes here.</p>
+            </section>
+
+            <!-- Publications Tab -->
+            <section id="tab-publications" class="tab-content">
+                <h2 class="prompt cursor">apropos 1 publications</h2>
+                <h3>zines</h3>
+                <ul>
+                    <li><a href="docs/BSD_Magazine_02_2009_OSSTL.pdf">Open Source Studio to Transmitter Link | BSD Magazine</a></li>
+                    <li><a href="docs/Linux_Journal_2009_No_6_Nagios.pdf">SNMP Monitoring with Nagios | Linux Journal</a></li>
+                    <li><a href="docs/Linux_Journal_January_2004_Controlling_Devices.pdf">Controlling Devices with Relays | Linux Journal</a></li>
+                </ul>
+                <h3>cve(s)</h3>
+                <ul>
+                    <!-- CVE List -->
+                    <li><a href="https://www.kb.cert.org/vuls/id/515283">CVE-2012-2568</a> Score: 10.0 Critical</li>
+                </ul>
+                <h3>commits</h3>
+                    <li><a href="https://github.com/librenms/librenms/commit/b4693e559e57bfc876f3fea4a9f6c760b847227a">librenms commit b4693e5</a></li>
+                </ul>
+            </section>
+
+            <!-- Sailing Tab -->
+            <section id="tab-sailing" class="tab-content">
+                <h2 class="prompt cursor">scriptreplay ./sailing_log</h2>
+                <p>Pictures and videos.</p>
+            </section>
+
+            <!-- Children Tab -->
+            <section id="tab-children" class="tab-content">
+                <h2 class="prompt cursor">ip addr show dev family0</h2>
+                <ul>
+                    <li>Haley</li>
+                    <li>Emma</li>
+                    <li>Oliver</li>
+                </ul>
+            </section>
+
+            <!-- Social Tab -->
+            <section id="tab-social" class="tab-content">
+                <h2 class="prompt cursor">ping -c 4 linkedin.com</h2>
+                <ul>
+                    <li><a href="https://www.linkedin.com/in/infotek/" target="_blank" rel="noopener">LinkedIn</a></li>
+                    <li><a href="mailto:infotek@gmail.com" target="_blank" rel="noopener">infotek@gmail.com</infotek></a></li>
+                    <!-- 
+                    <li><a href="https://.com/" target="_blank" rel="noopener"></a></li>
+                    -->
+                </ul>
+            </section>
+        </main>
+
+        <script type="module">
+            "use strict";
 
             const ParticleOffsets = {
                 BASE_X: 0,
@@ -431,4 +661,7 @@
                 const activeBtn = Array.from(document.querySelectorAll('.tab-btn'))
                     .find(btn => btn.getAttribute('onclick').includes(tabName));
                 if (activeBtn) activeBtn.classList.add('active');
-            };</script></body></html>
+            };
+        </script>
+    </body>
+</html>
