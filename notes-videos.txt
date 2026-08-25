@@ -1,0 +1,45 @@
+# notes on creating low rez videos with an nvidia
+
+cd ./jasonellison.net/html/video
+
+# 1. MP4 NVENC (640x360 @ 24fps)
+ffmpeg -hwaccel cuda -i Birdiefish_run_with_me_in_on_jib_sheets.mp4 \
+  -vf "scale=-2:360,fps=24" \
+  -c:v h264_nvenc -cq 32 -preset p6 \
+  -c:a aac -b:a 96k \
+  -movflags +faststart \
+  Birdiefish_retro.mp4
+
+# 2. WebM VP9 (640x360 @ 24fps)
+ffmpeg -i Birdiefish_run_with_me_in_on_jib_sheets.mp4 \
+  -vf "scale=-2:360,fps=24" \
+  -c:v libvpx-vp9 -crf 40 -b:v 0 \
+  -row-mt 1 -threads 16 \
+  -c:a libopus -b:a 96k \
+  Birdiefish_retro.webm
+
+# 3. Make a poster for pre-load
+
+ffmpeg -ss 00:00:03 -i video/Birdiefish_run_with_me_in_on_jib_sheets.mp4 \
+  -vframes 1 -q:v 2 \
+  video/poster.jpg
+
+# 4. PoPulate the htmlerifications
+
+<!-- Sailing Tab -->
+<section id="tab-sailing" class="tab-content">
+    <h2 class="prompt cursor">scriptreplay ./sailing_log</h2>
+    <p style="margin-bottom: 1rem; color: var(--dim-text);">
+        Birdiefish run with me on jib sheets [360p 24fps]
+    </p>
+
+    <div style="max-width: 640px; margin: 0 auto;">
+        <video controls preload="none" poster="video/posterx.jpg" 
+               style="width: 100%; border: 2px solid var(--border); box-shadow: 0 0 10px rgba(51, 255, 51, 0.2); background: #000;">
+            <source src="video/file.webm" type="video/webm">
+            <source src="video/file.mp4" type="video/mp4">
+            Your browser does not support HTML5 video playback.
+        </video>
+    </div>
+</section>
+
