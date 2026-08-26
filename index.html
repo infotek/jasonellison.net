@@ -60,7 +60,7 @@
                 align-items: center;
                 /* CRT Scanline Overlay Effect */
                 background-image: linear-gradient(
-                    rgba(0, 0, 0, 0) 50%, 
+                    rgba(0, 0, 0, 0) 50%,
                     rgba(0, 0, 0, 0.4) 50%
                 );
                 background-size: 100% 4px;
@@ -152,6 +152,52 @@
                 text-shadow: 0 0 6px rgba(51, 255, 51, 0.4);
             }
 
+            /* Section-specific helpers (replace one-off inline styles) */
+            .section-intro {
+                margin-bottom: 1rem;
+            }
+
+            .list-heading {
+                color: var(--text);
+                margin-top: 0;
+                margin-bottom: 0.75rem;
+            }
+
+            .list-plain {
+                list-style-type: none;
+                padding-left: 0;
+                margin: 0;
+                line-height: 1.8;
+            }
+
+            .sublist {
+                list-style-type: none;
+                padding-left: 1.5rem;
+                margin-top: 0.25rem;
+            }
+
+            .dim-caption {
+                margin-bottom: 0.5rem;
+                color: var(--dim-text);
+            }
+
+            .media-wrap {
+                max-width: 640px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .media-wrap + .media-wrap {
+                margin-top: 1.5rem;
+            }
+
+            .media-video {
+                width: 100%;
+                border: 2px solid var(--border);
+                box-shadow: 0 0 10px rgba(51, 255, 51, 0.2);
+                background: #000;
+            }
+
             /* Terminal Prompt & Blinking Cursor Styling */
             .prompt::before {
                 content: "infotek@darkstar:~$ ";
@@ -172,6 +218,7 @@
                     opacity: 0;
                 }
             }
+
             .terminal-avatar {
                 position: fixed;
                 bottom: 0;
@@ -191,8 +238,11 @@
                    opacity: 0.65;
                }
             }
-            .terminal-emoji {
-                filter: sepia(100%) hue-rotate(80deg) saturate(300%);
+
+            @media (prefers-reduced-motion: reduce) {
+                .cursor::after {
+                    animation: none;
+                }
             }
         </style>
     </head>
@@ -202,29 +252,29 @@
         </div>
 
         <main>
-            <nav>
-                <button class="tab-btn active" onclick="switchTab('home')">~</button>
-                <button class="tab-btn" onclick="switchTab('cv')">whois</button>
-                <button class="tab-btn" onclick="switchTab('publications')">apropos</button>
-                <button class="tab-btn" onclick="switchTab('sailing')">scriptreplay</button>
-                <button class="tab-btn" onclick="switchTab('children')">ip addr</button>
-                <button class="tab-btn" onclick="switchTab('social')">ping</button>
+            <nav role="tablist" aria-label="Site sections">
+                <button type="button" class="tab-btn active" id="tab-btn-home" role="tab" aria-selected="true" aria-controls="tab-home" data-tab="home">~</button>
+                <button type="button" class="tab-btn" id="tab-btn-cv" role="tab" aria-selected="false" aria-controls="tab-cv" data-tab="cv">whois</button>
+                <button type="button" class="tab-btn" id="tab-btn-publications" role="tab" aria-selected="false" aria-controls="tab-publications" data-tab="publications">apropos</button>
+                <button type="button" class="tab-btn" id="tab-btn-sailing" role="tab" aria-selected="false" aria-controls="tab-sailing" data-tab="sailing">scriptreplay</button>
+                <button type="button" class="tab-btn" id="tab-btn-children" role="tab" aria-selected="false" aria-controls="tab-children" data-tab="children">ip addr</button>
+                <button type="button" class="tab-btn" id="tab-btn-social" role="tab" aria-selected="false" aria-controls="tab-social" data-tab="social">ping</button>
             </nav>
 
             <!-- Home Tab -->
-            <section id="tab-home" class="tab-content active">
+            <section id="tab-home" class="tab-content active" role="tabpanel" aria-labelledby="tab-btn-home">
                 <h1 class="prompt cursor">hostname -f</h1>
                 <p>jasonellison.net</p>
                 <p>so long and thanks for all the fish...</p>
             </section>
 
             <!-- CV Tab -->
-            <section id="tab-cv" class="tab-content">
+            <section id="tab-cv" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-cv" hidden>
                 <h2 class="prompt cursor">whois jasonellison</h2>
                 <p>Curriculum Vitae content </p>
 
                 <h3>resume & credentials</h3>
-                <p style="margin-bottom: 1rem;">
+                <p class="section-intro">
                     Network Engineer & Senior Systems Analyst specializing in Linux administration,
                     enterprise monitoring, embedded, and critical infrastructure.
                 </p>
@@ -257,11 +307,11 @@
             </section>
 
             <!-- apropos Tab -->
-            <section id="tab-publications" class="tab-content">
+            <section id="tab-publications" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-publications" hidden>
                 <h2 class="prompt cursor">apropos publications</h2>
                 <!-- PUBLICATIONS & SPECS -->
-                <h3 style="color: #33ff33; margin-top: 0; margin-bottom: 0.75rem;">publications (7) - zine articles & architecture specs</h3>
-                <ul style="list-style-type: none; padding-left: 0; margin: 0; line-height: 1.8;">
+                <h3 class="list-heading">publications (7) - zine articles & architecture specs</h3>
+                <ul class="list-plain">
                     <li> [PDF] <a href="docs/BSD_Magazine_02_2009_OSSTL.pdf">Open Source Studio to Transmitter Link | BSD Magazine</a></li>
                     <li> [PDF] <a href="docs/Linux_Journal_2009_No_6_Nagios.pdf">SNMP Monitoring with Nagios | Linux Journal</a></li>
                     <li> [PDF] <a href="docs/Linux_Journal_January_2004_Controlling_Devices.pdf">Controlling Devices with Relays | Linux Journal</a></li>
@@ -269,41 +319,41 @@
                 </ul>
                 <h3>cve(s)</h3>
                 <ul>
-                    <!-- CVE List -->
-                    <li><a href="https://www.kb.cert.org/vuls/id/515283">CVE-2012-2568 Score: 10.0 Critical</a></li>
-                        <ul style="list-style-type: none; padding-left: 1.5rem; margin-top: 0.25rem;">
+                    <li>
+                        <a href="https://www.kb.cert.org/vuls/id/515283">CVE-2012-2568 Score: 10.0 Critical</a>
+                        <ul class="sublist">
                             <li>
                                 <a href="docs/Gmail-Dan_Kaminsky_Seagate_Black_Armor_security_issue.pdf" target="_blank" rel="noopener">
                                     └─ [PDF] Gmail - Dan Kaminsky Seagate BlackArmor Security Issue
                                 </a>
                             </li>
                         </ul>
+                    </li>
                 </ul>
                 <h3>commits</h3>
+                <ul>
                     <li><a href="https://github.com/librenms/librenms/commit/b4693e559e57bfc876f3fea4a9f6c760b847227a">librenms commit b4693e5</a></li>
                 </ul>
             </section>
 
             <!-- Sailing Tab -->
-            <section id="tab-sailing" class="tab-content">
+            <section id="tab-sailing" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-sailing" hidden>
                 <h2 class="prompt cursor">scriptreplay ./sailing_log</h2>
-                <p style="margin-bottom: 1rem; color: var(--dim-text);">
+                <p class="dim-caption">
                     Birdiefish run with me on jib sheets [360p 24fps]
                 </p>
-                <div style="max-width: 640px; margin: 0 auto;">
-                    <video controls preload="none" poster="video/poster.jpg" 
-                           style="width: 100%; border: 2px solid var(--border); box-shadow: 0 0 10px rgba(51, 255, 51, 0.2); background: #000;">
+                <div class="media-wrap">
+                    <video controls preload="none" poster="video/poster.jpg" class="media-video">
                         <source src="video/Birdiefish_run_with_me_in_on_jib_sheets.webm" type="video/webm">
                         <source src="video/Birdiefish_run_with_me_in_on_jib_sheets.mp4" type="video/mp4">
                         Your browser does not support HTML5 video playback.
                     </video>
                 </div>
-                <p style="margin-bottom: 0.5rem; color: var(--dim-text);">
+                <p class="dim-caption">
                     Fairhope Yacht Club Beer Can Race — Sea Exchange [360p 24fps]
                 </p>
-                <div style="max-width: 640px; margin: 1.5rem auto;">
-                    <video controls preload="none" poster="video/fyc_poster.jpg" 
-                           style="width: 100%; border: 2px solid var(--border); box-shadow: 0 0 10px rgba(51, 255, 51, 0.2); background: #000;">
+                <div class="media-wrap">
+                    <video controls preload="none" poster="video/fyc_poster.jpg" class="media-video">
                         <source src="video/fyc_beer_can_racing_sea_exchange.webm" type="video/webm">
                         <source src="video/fyc_beer_can_racing_sea_exchange.mp4" type="video/mp4">
                         Your browser does not support HTML5 video playback.
@@ -312,7 +362,7 @@
             </section>
 
             <!-- Children Tab -->
-            <section id="tab-children" class="tab-content">
+            <section id="tab-children" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-children" hidden>
                 <h2 class="prompt cursor">ip addr show dev family0</h2>
                 <ul>
                     <li>Haley</li>
@@ -322,21 +372,18 @@
             </section>
 
             <!-- Social Tab -->
-            <section id="tab-social" class="tab-content">
+            <section id="tab-social" class="tab-content" role="tabpanel" aria-labelledby="tab-btn-social" hidden>
                 <h2 class="prompt cursor">ping -c 4 linkedin.com</h2>
                 <ul>
                     <li><a href="https://www.linkedin.com/in/infotek/" target="_blank" rel="noopener">LinkedIn</a></li>
-                    <li><a href="mailto:infotek@gmail.com" target="_blank" rel="noopener">infotek@gmail.com</infotek></a></li>
-                    <!-- 
-                    <li><a href="https://.com/" target="_blank" rel="noopener"></a></li>
-                    -->
+                    <li><a href="mailto:infotek@gmail.com" rel="noopener">infotek@gmail.com</a></li>
                 </ul>
             </section>
         </main>
 
-        <script type="module">
-            "use strict";
+        <img src="jason_color.png" alt="Jason Ellison" class="terminal-avatar" width="210" height="210" decoding="async" />
 
+        <script type="module">
             const ParticleOffsets = {
                 BASE_X: 0,
                 BASE_Z: 1,
@@ -344,12 +391,10 @@
                 R: 3,
                 G: 4,
                 B: 5,
-                A: 6,
-                SIZE: 7,
-                PERSPECTIVE_SIZE: 8,
-                HALF_SIZE: 9,
-                PERSPECTIVE_DEPTH_ALPHA: 10,
-                PARTICLE_SIZE: 11,
+                PERSPECTIVE_SIZE: 6,
+                HALF_SIZE: 7,
+                PERSPECTIVE_DEPTH_ALPHA: 8,
+                PARTICLE_SIZE: 9,
             };
 
             class WavesCanvas {
@@ -427,8 +472,6 @@
                         shape === "circle" ? this.#drawCircleParticle : this.#drawTriangleParticle;
 
                     window.addEventListener("resize", this.refresh);
-                    const colorSchemeChangeListener = window.matchMedia("(prefers-color-scheme: dark)");
-                    colorSchemeChangeListener.addEventListener("change", this.refresh);
                 }
 
                 refresh = () => {
@@ -529,7 +572,6 @@
                             const distanceFactor = Math.max(0.05, 1 - logScale);
                             const perspectiveSize = baseSize * distanceFactor * 3;
 
-                            const alpha = Math.max(Math.floor(z / this.#gridDepth), 0.85);
                             const depthAlpha = Math.max(0.6, Math.pow(distanceFactor, 2));
 
                             const offset = particleIndex * ParticleOffsets.PARTICLE_SIZE;
@@ -537,7 +579,7 @@
                             this.#particleData[offset + ParticleOffsets.BASE_X] = baseX;
                             this.#particleData[offset + ParticleOffsets.BASE_Z] = baseZ;
                             this.#particleData[offset + ParticleOffsets.BASE_Y] = this.cameraZ * -0.4;
-                            
+
                             // Monochrome Green Phosphor Palette
                             this.#particleData[offset + ParticleOffsets.R] = 0;
                             this.#particleData[offset + ParticleOffsets.G] = Math.min(
@@ -545,9 +587,7 @@
                                 255,
                             );
                             this.#particleData[offset + ParticleOffsets.B] = 0;
-                            
-                            this.#particleData[offset + ParticleOffsets.A] = alpha;
-                            this.#particleData[offset + ParticleOffsets.SIZE] = baseSize;
+
                             this.#particleData[offset + ParticleOffsets.PERSPECTIVE_SIZE] = perspectiveSize;
                             this.#particleData[offset + ParticleOffsets.HALF_SIZE] = Math.max(
                                 1,
@@ -615,9 +655,9 @@
 
                     for (let py = -radius; py <= radius; py++) {
                         for (let px = -radius; px <= radius; px++) {
-                            const distance = Math.sqrt(px * px + py * py);
+                            const dist = Math.sqrt(px * px + py * py);
 
-                            if (distance >= radius - 1 && distance <= radius) {
+                            if (dist >= radius - 1 && dist <= radius) {
                                 const xPixel = centerX + px;
                                 const yPixel = centerY + py;
 
@@ -703,10 +743,10 @@
                             continue;
                         }
 
-                        const distance = Math.abs(projected.z - this.cameraZ);
+                        const viewDistance = Math.abs(projected.z - this.cameraZ);
                         const perspectiveSize = this.#particleData[offset + ParticleOffsets.PERSPECTIVE_SIZE];
 
-                        if (distance > this.lodThreshold || perspectiveSize < this.pointSizeCutoff) {
+                        if (viewDistance > this.lodThreshold || perspectiveSize < this.pointSizeCutoff) {
                             this.#drawPointParticle(
                                 projected.x,
                                 projected.y,
@@ -750,28 +790,49 @@
                 pause = () => {
                     cancelAnimationFrame(this.#renderFrameID);
                 };
+
+                // Resumes the existing frame without rebuilding the particle field.
+                resume = () => {
+                    this.#render();
+                };
             }
 
-            // Immediate execution
             const canvas = document.getElementById("waves-canvas");
             const waves = new WavesCanvas(canvas);
             waves.play();
 
-            // Tab Navigation Logic
-            window.switchTab = function(tabName) {
-                document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-                document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            // Pause the render loop while the tab is hidden to save CPU/battery.
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    waves.pause();
+                } else {
+                    waves.resume();
+                }
+            });
 
-                const targetTab = document.getElementById(`tab-${tabName}`);
-                if (targetTab) targetTab.classList.add('active');
+            // Tab navigation: one delegated listener, no inline handlers.
+            const nav = document.querySelector('nav[role="tablist"]');
+            const tabButtons = Array.from(document.querySelectorAll(".tab-btn"));
+            const tabPanels = Array.from(document.querySelectorAll(".tab-content"));
 
-                const activeBtn = Array.from(document.querySelectorAll('.tab-btn'))
-                    .find(btn => btn.getAttribute('onclick').includes(tabName));
-                if (activeBtn) activeBtn.classList.add('active');
-            };
+            function switchTab(tabName) {
+                for (const panel of tabPanels) {
+                    const isActive = panel.id === `tab-${tabName}`;
+                    panel.classList.toggle("active", isActive);
+                    panel.hidden = !isActive;
+                }
+
+                for (const button of tabButtons) {
+                    const isActive = button.dataset.tab === tabName;
+                    button.classList.toggle("active", isActive);
+                    button.setAttribute("aria-selected", String(isActive));
+                }
+            }
+
+            nav.addEventListener("click", (event) => {
+                const button = event.target.closest(".tab-btn");
+                if (button) switchTab(button.dataset.tab);
+            });
         </script>
-
-        <img src="jason_color.png" alt="Jason Ellison" class="terminal-avatar" />
-
     </body>
 </html>
