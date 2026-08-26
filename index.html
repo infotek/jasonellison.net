@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="color-scheme" content="dark" />
 
-        <title>jasonellison.net</title>
+        <title>Jason Ellison — Network Engineer & Linux Systems Analyst | jasonellison.net</title>
+        <meta name="description" content="Personal site of Jason Ellison. Systems, Linux, network engineering, and sailing." />
+        <link rel="canonical" href="https://jasonellison.net/" />
 
         <!-- Open Graph Metadata -->
         <meta property="og:type" content="website" />
@@ -27,6 +29,28 @@
 
         <!-- SVG Favicon (Green Terminal Prompt) -->
         <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+        <!-- Structured Data (schema.org Person) -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Jason Ellison",
+            "url": "https://jasonellison.net/",
+            "jobTitle": "Network Engineer & Senior Systems Analyst",
+            "sameAs": [
+                "https://www.linkedin.com/in/infotek/"
+            ],
+            "knowsAbout": [
+                "Linux administration",
+                "Network engineering",
+                "Enterprise monitoring",
+                "Embedded systems",
+                "Critical infrastructure",
+                "Sailing"
+            ]
+        }
+        </script>
 
         <style>
             :root {
@@ -147,7 +171,7 @@
                 margin-bottom: 0.5rem;
             }
 
-            h1, h2, h3 {
+            h1, h2, h3, .term-heading {
                 color: var(--accent);
                 text-shadow: 0 0 6px rgba(51, 255, 51, 0.4);
             }
@@ -219,6 +243,18 @@
                 }
             }
 
+            .visually-hidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
+            }
+
             .terminal-avatar {
                 position: fixed;
                 bottom: 0;
@@ -263,7 +299,8 @@
 
             <!-- Home Tab -->
             <section id="tab-home" class="tab-content active" role="tabpanel" aria-labelledby="tab-btn-home">
-                <h1 class="prompt cursor">hostname -f</h1>
+                <h1 class="visually-hidden">Jason Ellison — Network Engineer, Linux Systems Analyst & Sailor</h1>
+                <p class="term-heading prompt cursor">hostname -f</p>
                 <p>jasonellison.net</p>
                 <p>so long and thanks for all the fish...</p>
             </section>
