@@ -2,6 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://jasonellison.net/</loc>
-        <lastmod>2026-08-26</lastmod>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/cv/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/publications/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/sailing/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/children/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/social/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/blog/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/blog/fyc-beer-can-racing/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/videos/birdyfish-jib-sheets/</loc>
+        <lastmod>2026-09-09</lastmod>
+    </url>
+    <url>
+        <loc>https://jasonellison.net/videos/fyc-beer-can-racing/</loc>
+        <lastmod>2026-09-09</lastmod>
     </url>
 </urlset>

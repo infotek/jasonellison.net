@@ -4,58 +4,18 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="color-scheme" content="dark" />
-
-        <title>Jason Ellison — Network Engineer & Linux Systems Analyst | jasonellison.net</title>
-        <meta name="description" content="Personal site of Jason Ellison. Systems, Linux, network engineering, and sailing." />
-        <link rel="canonical" href="https://jasonellison.net/" />
-
-        <!-- Open Graph Metadata -->
+        <title>apropos publications — Jason Ellison | jasonellison.net</title>
+        <meta name="description" content="Jason Ellison's publications: zine articles (BSD Magazine, Linux Journal), the OSSTL protocol spec, CVE-2012-2568, and commits." />
+        <link rel="canonical" href="https://jasonellison.net/publications/" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://jasonellison.net/" />
-        <meta property="og:title" content="Jason Ellison — infotek@darkstar:~$" />
-        <meta property="og:description" content="Personal site of Jason Ellison. Systems, Linux, network engineering, and sailing." />
+        <meta property="og:url" content="https://jasonellison.net/publications/" />
+        <meta property="og:title" content="apropos publications — Jason Ellison | jasonellison.net" />
+        <meta property="og:description" content="Jason Ellison's publications: zine articles (BSD Magazine, Linux Journal), the OSSTL protocol spec, CVE-2012-2568, and commits." />
         <meta property="og:image" content="https://jasonellison.net/og-image.png" />
-        <meta property="og:image:alt" content="Slackware terminal screen featuring Jason Ellison headshot avatar" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        <!-- Twitter Card Metadata -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://jasonellison.net/" />
-        <meta name="twitter:title" content="Jason Ellison — darkstar" />
-        <meta name="twitter:description" content="Personal site of Jason Ellison. Systems, Linux, network engineering, and sailing." />
-        <meta name="twitter:image" content="https://jasonellison.net/og-image.png" />
-
-        <!-- SVG Favicon (Green Terminal Prompt) -->
+        <meta name="twitter:title" content="apropos publications — Jason Ellison | jasonellison.net" />
+        <meta name="twitter:description" content="Jason Ellison's publications: zine articles (BSD Magazine, Linux Journal), the OSSTL protocol spec, CVE-2012-2568, and commits." />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-        <!-- Structured Data (schema.org Person) -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Jason Ellison",
-            "url": "https://jasonellison.net/",
-            "jobTitle": "Network Engineer & Senior Systems Analyst",
-            "sameAs": [
-                "https://www.linkedin.com/in/infotek/",
-                "https://github.com/infotek",
-                "https://scholar.google.com/citations?user=weXj1UQAAAAJ",
-                "https://www.flickr.com/people/infotek/",
-                "https://www.facebook.com/JasonEllisonConsulting/"
-            ],
-            "knowsAbout": [
-                "Linux administration",
-                "Network engineering",
-                "Enterprise monitoring",
-                "Embedded systems",
-                "Critical infrastructure",
-                "Sailing"
-            ]
-        }
-        </script>
-
         <style>
             :root {
                 --bg: #030a03;             /* Deep CRT dark background */
@@ -308,41 +268,43 @@
         </style>
     </head>
     <body>
-        <div class="container" aria-hidden="true">
-            <canvas id="waves-canvas"></canvas>
-        </div>
-
+        <div class="container" aria-hidden="true"><canvas id="waves-canvas"></canvas></div>
         <main>
             <nav role="navigation" aria-label="Site sections">
-                <a class="tab-btn active" data-nav="home" href="/">~</a>
+                <a class="tab-btn" data-nav="home" href="/">~</a>
                 <a class="tab-btn" data-nav="cv" href="/cv/">whois</a>
-                <a class="tab-btn" data-nav="publications" href="/publications/">apropos</a>
+                <a class="tab-btn active" data-nav="publications" href="/publications/">apropos</a>
                 <a class="tab-btn" data-nav="sailing" href="/sailing/">scriptreplay</a>
                 <a class="tab-btn" data-nav="children" href="/children/">ip addr</a>
                 <a class="tab-btn" data-nav="blog" href="/blog/">/var/log/</a>
                 <a class="tab-btn" data-nav="social" href="/social/">ping</a>
             </nav>
-
-            <!-- Home -->
-            <h1 class="visually-hidden">Jason Ellison — Network Engineer, Linux Systems Analyst & Sailor</h1>
-            <p class="term-heading prompt cursor">hostname -f</p>
-            <p>jasonellison.net</p>
-            <p>so long and thanks for all the fish...</p>
-
-            <p class="section-intro">
-                Network engineer &amp; Linux systems analyst. Three decades in the computer world
-                — the kind that started on a used 8088 — and on the water: found on the Gulf Coast.
-            </p>
-
-            <h3>ls /sections</h3>
-            <ul class="list-plain">
-                <li><a href="/cv/">whois</a> — the short version, highlight reel &amp; chronology</li>
-                <li><a href="/publications/">apropos</a> — zine articles, CVE, commits</li>
-                <li><a href="/sailing/">scriptreplay</a> — sailing record + video</li>
-                <li><a href="/children/">ip addr</a> — family0</li>
-                <li><a href="/blog/">/var/log/</a> — sailing &amp; technical adventures</li>
-                <li><a href="/social/">ping</a> — links</li>
-            </ul>
+<h2 class="prompt cursor">apropos publications</h2>
+<!-- PUBLICATIONS & SPECS -->
+<h3 class="list-heading">publications (4) - zine articles &amp; architecture specs</h3>
+<ul class="list-plain">
+    <li> [PDF] <a href="/docs/BSD_Magazine_02_2009_OSSTL.pdf">Open Source Studio to Transmitter Link | BSD Magazine</a></li>
+    <li> [PDF] <a href="/docs/Linux_Journal_2009_No_6_Nagios.pdf">Monitoring Dell Servers with Nagios | Linux Journal</a></li>
+    <li> [PDF] <a href="/docs/Linux_Journal_January_2004_Controlling_Devices.pdf">Controlling Devices with Relays | Linux Journal</a></li>
+    <li> [PDF] <a href="/docs/OSSTL_Document.pdf">OSSTL Protocol Specification/Paper</a></li>
+</ul>
+<h3>cve(s)</h3>
+<ul>
+    <li>
+        <a href="https://www.kb.cert.org/vuls/id/515283">CVE-2012-2568 Score: 10.0 Critical</a>
+        <ul class="sublist">
+            <li>
+                <a href="/docs/Gmail-Dan_Kaminsky_Seagate_Black_Armor_security_issue.pdf" target="_blank" rel="noopener">
+                    └─ [PDF] Gmail - Dan Kaminsky Seagate BlackArmor Security Issue
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<h3>commits</h3>
+<ul>
+    <li><a href="https://github.com/librenms/librenms/commit/b4693e559e57bfc876f3fea4a9f6c760b847227a">librenms commit b4693e5</a></li>
+</ul>
         </main>
 
         <img src="/jason_color.png" alt="Jason Ellison" class="terminal-avatar" width="210" height="210" decoding="async" />
