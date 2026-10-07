@@ -309,6 +309,24 @@
 
         <img src="/jason_color.png" alt="Jason Ellison" class="terminal-avatar" width="210" height="210" decoding="async" />
 
+        <!-- Structured data for rich snippets -->
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Jason Ellison Publications",
+          "url": "https://jasonellison.net/publications/",
+          "sameAs": [
+            "https://github.com/infotek",
+            "https://linkedin.com/in/infotek"
+          ],
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://jasonellison.net/publications/?s={search_term}",
+            "query-input": "name required"
+          }
+        }
+        </script>
         <script type="module" src="/assets/waves.js"></script>
     </body>
 </html>
